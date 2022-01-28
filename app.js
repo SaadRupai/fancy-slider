@@ -8,8 +8,8 @@ const sliderContainer = document.getElementById('sliders');
 let sliders = [];
 
 //keypress input in search box
-document.getElementById('search').addEventListener('keypress', function(){
-  if(event.key == 'Enter'){
+document.getElementById('search').addEventListener('keypress', function () {
+  if (event.key == 'Enter') {
     searchBtn.click();
   }
 })
@@ -47,19 +47,13 @@ let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.add('added');
- 
+
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
   } else {
     element.classList.remove('added');
-    searchBtn.addEventListener('click', function () {
-      document.querySelector('.main').style.display = 'none';
-      clearInterval(timer);
-      const search = document.getElementById('search');
-      getImages(search.value)
-      sliders.length = 0;
-    })
+
   }
 }
 var timer
@@ -83,7 +77,7 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   const duration = document.getElementById('duration').value || 1000;
-  if(duration > 0){
+  if (duration > 0) {
     sliders.forEach(slide => {
       let item = document.createElement('div')
       item.className = "slider-item";
@@ -98,9 +92,15 @@ const createSlider = () => {
       changeSlide(slideIndex);
     }, duration);
   }
-  else{
+  else {
     alert('Please do not enter negative value');
-    
+
+    document.querySelector('.main').style.display = 'none';
+    clearInterval(timer);
+    const search = document.getElementById('search');
+    getImages(search.value)
+    sliders.length = 0;
+
   }
 }
 
